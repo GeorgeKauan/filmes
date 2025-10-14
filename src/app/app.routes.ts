@@ -1,3 +1,6 @@
 import { Routes } from '@angular/router';
-
-export const routes: Routes = [];
+import { Busca } from './busca/busca'
+export const routes: Routes = [
+    {path: 'busca', component: Busca},
+    {path: '', redirectTo: '/busca', pathMatch: 'full'}
+];
