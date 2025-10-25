@@ -1,1 +1,38 @@
-<p>busca works!</p>
+<h2>Consulta a Filmes (API OMDB)</h2>
+
+<div>
+  <input type="text" placeholder="Digite o título do filme" #tituloInput>
+
+  <label>
+    <input type="radio" name="tipo" [(ngModel)]="tipoConsulta" value="t" checked>
+    Filme único
+  </label>
+  <label>
+    <input type="radio" name="tipo" [(ngModel)]="tipoConsulta" value="s">
+    Lista de filmes
+  </label>
+
+  <button type="button" (click)="buscarPorTitulo(tituloInput.value)">Buscar</button>
+</div>
+
+
+<div *ngIf="filme && tipoConsulta === 't'">
+  <h3>{{ filme.Title }} ({{ filme.Year }})</h3>
+  <img [src]="filme.Poster" alt="Poster do filme" width="200">
+  <p><strong>Gênero:</strong> {{ filme.Genre }}</p>
+  <p><strong>Diretor:</strong> {{ filme.Director }}</p>
+  <p><strong>Atores:</strong> {{ filme.Actors }}</p>
+  <p><strong>Idioma:</strong> {{ filme.Language }}</p>
+  <p><strong>País:</strong> {{ filme.Country }}</p>
+</div>
+
+
+<div *ngIf="lista && tipoConsulta === 's'">
+  <h3>Resultados da busca:</h3>
+  <ul>
+    <li *ngFor="let item of lista">
+      <img [src]="item.Poster" alt="Poster" width="100">
+      {{ item.Title }} ({{ item.Year }})
+    </li>
+  </ul>
+</div>

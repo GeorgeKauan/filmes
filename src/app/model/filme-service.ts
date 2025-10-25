@@ -11,9 +11,13 @@ export class FilmeService {
   private API_URL = "http://www.omdbapi.com/"
   private API_KEY = "7b27a48d"
 
-  /*Consulta por um filme dado o seu titulo*/
+  
   obterFilme(titulo: string): Observable<Filme> {
     return this.http.get<Filme>(`${this.API_URL}?t=${titulo}&apikey=${this.API_KEY}`)
   }
-  
+    
+  obterLista(titulo: string): Observable<any> {
+    return this.http.get<any>(`${this.API_URL}?s=${titulo}&apikey=${this.API_KEY}`);
+  }
 }
+
